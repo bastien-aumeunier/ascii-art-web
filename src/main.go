@@ -25,6 +25,16 @@ func index(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "templates/404.html")
 		return
 	}
+	file, err := os.Open("file.txt")
+	if err == nil {
+		file.Close()
+		os.Remove("file.txt")
+	}
+	file, err = os.Create("file.txt")
+	_, err = os.Open("file.txt")
+	_, err = file.WriteString(" ")
+	file.Close()
+
 	var text, font, Result string
 	switch r.Method {
 	case "GET":
@@ -64,11 +74,12 @@ func print(Args string, Style string) {
 	debutMot := 0
 	retour := false
 	var forms string
-	if Style == "standard" {
+	switch Style {
+	case "standard":
 		forms = "forms/standard.txt"
-	} else if Style == "shadow" {
+	case "shadow":
 		forms = "forms/shadow.txt"
-	} else {
+	case "thinkertoy":
 		forms = "forms/thinkertoy.txt"
 	}
 	file, err := os.Open("file.txt")
