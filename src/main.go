@@ -10,12 +10,14 @@ import (
 )
 
 func main() {
-	port := "8080"
+	port := "8080" /*Changer le port du serveur ici*/
 	fmt.Println("Starting server on 127.0.0.1:" + port + "/")
 	http.HandleFunc("/", index)
+	http.HandleFunc("/download", downloadAscii)
 	http.ListenAndServe(":"+port, nil)
 }
 
+/*Route Principale*/
 func index(w http.ResponseWriter, r *http.Request) {
 	var t *template.Template
 	t = template.Must(template.ParseGlob("templates/index.html"))
@@ -50,6 +52,11 @@ func index(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, Result)
 }
 
+/*Route pour télécharger*/
+func downloadAscii(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "file.txt")
+}
+
 //fonction pour print
 func print(Args string, Style string) {
 	Arg := []rune(Args)
@@ -58,11 +65,11 @@ func print(Args string, Style string) {
 	retour := false
 	var forms string
 	if Style == "standard" {
-		forms = "standard.txt"
+		forms = "forms/standard.txt"
 	} else if Style == "shadow" {
-		forms = "shadow.txt"
+		forms = "forms/shadow.txt"
 	} else {
-		forms = "thinkertoy.txt"
+		forms = "forms/thinkertoy.txt"
 	}
 	file, err := os.Open("file.txt")
 	if err == nil {
