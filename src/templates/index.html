@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8">
+		<link rel="icon" type="image/png" sizes="16x16" href="http://www.favicon.pro/favicon/6683logo1.ico">
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.central{
+				width: 900px;
+    			margin: 0 auto;
+    			padding: 0 10px;
+				text-align: center
+			}
+			header h1 {
+				font-size: 45px;
+			}
+			header h2 {
+				font-size: 35px;
+			}
+			.title{
+				width: 400px;
+				height: 100px;
+				margin: 20px auto 0 auto;
+				text-align: center;
+				border: solid 1px black;
+				border-bottom: none;
+				border-radius: 10px;
+				background-color: #74cddc;
+			}
+			form {
+				width: 700px;
+				height: 120px;
+				margin: 0 auto;
+				background-color: #74cddc;
+				text-align: center;
+				border: solid 1px black;
+				border-radius: 10px;
+				padding-top: 25px
+			}
+			input[type="radio"]{
+				margin-bottom: 25px;
+			}
+			input[type="text"]{
+				width: 200px;
+				margin-bottom: 10px;
+				border-radius: 3px;
+			}
+			.button{
+				border-radius: 3px;
+				height: 30px;
+				width: 80px;
+				background-color: white
+			}
+			.button:hover, input:hover {
+				background-color: orange;
+			}
+			.buttons{
+				margin: 0 auto;
+				margin: none;
+				padding: none;
+				width: 300px;
+				display: flex;
+				justify-content: space-around;
+			}
+			#result {
+				font-size: 25px;
+				width: 900px;
+				height: 255px;
+				border: solid 1px black;
+				border-radius: 10px;
+				overflow-x: auto;
+			}
+			::placeholder {
+  				color: black;
+			}
+		</style>
+        <title>Ascii Art Web</title>
+    </head>
+    <body>
+			<header>
+				<div class="central">
+					<div class="title">
+						<h1>Ascii Art Web</h1>
+					<h2><small>Bastien, Manoa, Hugo </small></h2>
+					</div>
+				</div>
+			</header>
+
+		<div class="central">
+			<form method="POST" action="/">
+				<label id="labelRadio" for="form">Sélectionne une forme de texte </label>
+				<input class type="radio" name="form" value="standard" checked>Standard
+				<input type="radio" name="form" value="shadow">Shadow
+				<input type="radio" name="form" value="thinkertoy">Thinkertoy
+				<br>
+				<label id="labelTextInput" for="textInput">Saisir du texte</label>
+				<input name="textInput" class="inputText" type="text" value="" placeholder="Entre du text" required/>
+				<br>
+				<div class="buttons">
+					<input class="button" type="submit" value="Valider" />
+					<a href="/src/file.txt" download> <button class="button">Télécharger</button> </a>
+				</div>
+			</form>
+		</div>
+		<div class="central">
+			<br>
+			<pre id="result"> {{.}}</pre>
+			<br>
+			<img src="https://cdn-images-1.medium.com/max/1600/1*_wxwNuxszA6vwQIUMbF-fw.gif" alt="">
+		</div>
+	</body>
+	
+</html>
